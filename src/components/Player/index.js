@@ -10,6 +10,7 @@ import { formatSeconds } from '../../services/player';
 import ButtonInline from '../../components/ButtonInline';
 import ReactTooltip from 'react-tooltip';
 import Clipboard from 'react-clipboard.js';
+import Visualizer from '../Visualizer';
 
 class Player extends React.Component {
   constructor(props) {
@@ -153,6 +154,9 @@ class Player extends React.Component {
           </div>
         </div>
         <div className="player-content">
+          <div className="visualizer-container">
+            <Visualizer audio={this.audioElement} />
+          </div>
           <div className="player-content-action">
             <ButtonInline onClick={() => this.handleIteratedTrack(-1)}>
               <a data-tip="Previous song" data-offset="{ 'right': 7 }" data-for="global">
@@ -211,32 +215,32 @@ class Player extends React.Component {
           <div className="player-content-action">
             {
               currentUser ?
-              <ButtonInline onClick={() => onLike(track)}>
-                <i className={likeClass} />
-              </ButtonInline> : null
+                <ButtonInline onClick={() => onLike(track)}>
+                  <i className={likeClass} />
+                </ButtonInline> : null
             }
           </div>
           <div className="player-content-action">
-              <Clipboard component="span" data-clipboard-text={track.permalink_url}>
-                <div className="player-content-link">
-                  <a
-                    title="Copy song url"
-                    data-tip="Copied!"
-                    data-for="global"
-                    data-delay-show={0}
-                    data-offset="{ 'right': 5, 'top': -5 }"
-                    data-delay-hide={2000}
-                    data-event="click"
-                    data-event-off="mousemove"
-                  >
-                      <i className="fa fa-share" />
-                  </a>
-                </div>
-              </Clipboard>
+            <Clipboard component="span" data-clipboard-text={track.permalink_url}>
+              <div className="player-content-link">
+                <a
+                  title="Copy song url"
+                  data-tip="Copied!"
+                  data-for="global"
+                  data-delay-show={0}
+                  data-offset="{ 'right': 5, 'top': -5 }"
+                  data-delay-hide={2000}
+                  data-event="click"
+                  data-event-off="mousemove"
+                >
+                  <i className="fa fa-share" />
+                </a>
+              </div>
+            </Clipboard>
           </div>
           <audio
             id="audio"
-            ref={(audio) => { this.audioElement = audio; } }
+            ref={(audio) => { this.audioElement = audio; }}
             src={addTempClientIdWith(stream_url, '?')}
           ></audio>
           <ReactTooltip id="global" delayShow={1000} place="top" aria-haspopup="true" effect="solid" />

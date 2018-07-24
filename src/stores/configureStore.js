@@ -14,7 +14,7 @@ export default function configureStore(initialState) {
 
   if (process.env.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('../reducers', () => {
-       // eslint-disable-next-line
+      // eslint-disable-next-line
       const nextReducer = require('../reducers').default;
       store.replaceReducer(nextReducer);
     });
