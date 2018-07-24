@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import debounce from 'lodash-es';
 
 
 class Visualizer extends React.Component {
@@ -11,13 +12,12 @@ class Visualizer extends React.Component {
             this.canvas = element;
             this.resizeCanvas()
         };
-        // this.resizeCanvas();
+        // document.body.addEventListener('resize', debounce(this.resizeCanvas, 300));
     }
     resizeCanvas() {
         // Make it visually fill the positioned parent
         this.canvas.style.width = '100%';
         this.canvas.style.height = '100%';
-        // ...then set the internal size to match
         this.canvas.width = this.canvas.offsetWidth;
         this.canvas.height = this.canvas.offsetHeight;
     }
