@@ -19,14 +19,11 @@ class Analyzer {
         source.connect(this.analyser);
         this.analyser.connect(context.destination);
         this.frequencies = new Uint8Array(this.analyser.frequencyBinCount);
-        //return this.analyser.getByteFrequencyData(this.frequencies)
     }
 
     getFrequencies() {
-        //if (this.isPlaying) {
         this.analyser.getByteFrequencyData(this.frequencies);
         return this.frequencies
-        //}
     }
 
 
