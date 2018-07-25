@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debounce from 'lodash/debounce';
 import Analyzer from './analyzer'
+import { runInThisContext } from 'vm';
 
 
 class Visualizer extends React.Component {
@@ -13,6 +14,7 @@ class Visualizer extends React.Component {
             this.canvas = element;
             this.resizeCanvas()
         };
+
     }
 
     componentDidMount() {

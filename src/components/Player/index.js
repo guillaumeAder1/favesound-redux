@@ -19,6 +19,12 @@ class Player extends React.Component {
     this.setAudioPosition = this.setAudioPosition.bind(this);
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.handleIteratedTrack = this.handleIteratedTrack.bind(this);
+
+    this.setRef = (audio) => {
+      this.audioElement = audio;
+      this.forceUpdate()
+    }
+
   }
 
   componentDidUpdate() {
@@ -241,7 +247,8 @@ class Player extends React.Component {
           <audio
             id="audio"
             crossOrigin='anonymous'
-            ref={(audio) => { this.audioElement = audio; }}
+            // ref={(audio) => { this.audioElement = audio; }}
+            ref={this.setRef}
             src={addTempClientIdWith(stream_url, '?')}
           ></audio>
           <ReactTooltip id="global" delayShow={1000} place="top" aria-haspopup="true" effect="solid" />
