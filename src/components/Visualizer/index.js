@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debounce from 'lodash/debounce';
 import Analyzer from './analyzer'
-import { runInThisContext } from 'vm';
+import { connect } from 'react-redux';
 
 
 class Visualizer extends React.Component {
@@ -20,7 +20,7 @@ class Visualizer extends React.Component {
     componentDidMount() {
         window.addEventListener('resize', debounce(this.resizeCanvas.bind(this), 300));
         this.analyzer = new Analyzer({ audioPlayer: this.audioElement });
-        setInterval(() => console.log(this.analyzer.getFrequencies()), 200)
+        setInterval(() => this.props.isPlaying && console.log(this.analyzer.getFrequencies()), 200)
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.resizeCanvas.bind(this));
@@ -43,8 +43,14 @@ class Visualizer extends React.Component {
 
 Visualizer.propTypes = {
     audio: PropTypes.object.isRequired,
+    isPlaying: PropTypes.bool,
 
 };
 
+function mapStateToProps(state) {
+    return {
+        isPlaying: state.player.isPlaying,
+    };
+}
 
-export default Visualizer;
+export default connect(mapStateToProps, null)(Visualizer);
