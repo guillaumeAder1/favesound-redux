@@ -155,7 +155,7 @@ class Player extends React.Component {
         </div>
         <div className="player-content">
           <div className="visualizer-container">
-            <Visualizer audio={this.audioElement} />
+            {this.audioElement && <Visualizer audio={this.audioElement} />}
           </div>
           <div className="player-content-action">
             <ButtonInline onClick={() => this.handleIteratedTrack(-1)}>
@@ -240,6 +240,7 @@ class Player extends React.Component {
           </div>
           <audio
             id="audio"
+            crossOrigin='anonymous'
             ref={(audio) => { this.audioElement = audio; }}
             src={addTempClientIdWith(stream_url, '?')}
           ></audio>
