@@ -3,16 +3,13 @@ class Frequency {
     constructor(props) {
         this.canvas = props.canvas;
         this.ctx = this.canvas.getContext('2d');
-        this.setCanvasSize()
+        this.setCanvasSize(this.canvas)
         console.log(this)
     }
 
-    setCanvasSize() {
-
-        this.width = this.canvas.width;
-        this.height = this.canvas.height;
-
-
+    setCanvasSize(canvas) {
+        this.width = canvas.width;
+        this.height = canvas.height;
     }
 
     draw(data) {

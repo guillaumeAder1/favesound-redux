@@ -19,7 +19,7 @@ class Visualizer extends React.Component {
             this.animations = [
                 new Frequency({ canvas: this.canvas })
             ]
-            this.resizeCanvas();
+            // this.resizeCanvas();
         };
         this.state = {
             visual: 0,
@@ -32,8 +32,10 @@ class Visualizer extends React.Component {
         window.addEventListener('resize', debounce(this.resizeCanvas.bind(this), 300));
         this.analyzer = new Analyzer({ audioPlayer: this.audioElement, fft: this.state.fft });
         this.visual = this.animations[this.state.visual];
-        this.resizeCanvas()
-        this.startDrawing();
+        setTimeout(() => {
+            this.resizeCanvas()
+            this.startDrawing();
+        }, 500);
     }
 
     startDrawing() {
@@ -51,6 +53,7 @@ class Visualizer extends React.Component {
         this.canvas.style.height = '100%';
         this.canvas.width = this.canvas.offsetWidth;
         this.canvas.height = this.canvas.offsetHeight;
+        this.visual.setCanvasSize(this.canvas)
     }
 
     render() {
