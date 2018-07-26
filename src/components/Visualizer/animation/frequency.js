@@ -2,29 +2,37 @@
 class Frequency {
     constructor(props) {
         this.canvas = props.canvas;
+        this.fft = props.fft;
         this.ctx = this.canvas.getContext('2d');
+        this.max = 255
     }
 
     setCanvasSize(canvas) {
         this.width = canvas.width;
         this.height = canvas.height;
+
     }
-
+    calcY(val) {
+        const perc = val / this.max;
+        return this.height - (this.height * perc);
+    }
     draw(data) {
-        console.log(data)
-        const len = data.length;
-        const step = this.width / len;
-        const { ctx } = this
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(10, 10, 100, 100);
-        // ctx.beginPath();
-        // ctx.strokeStyle = 'blue';
-        // ctx.moveTo(20, 20);
-        // ctx.lineTo(120, 120);
-        // ctx.stroke();
-        data.forEach((e, i) => {
-
-        })
+        const { ctx, width, height } = this
+        const step = width / data.length;
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(0, 0, width, height);
+        ctx.lineWidth = 2
+        ctx.strokeStyle = '#00a0dd'
+        ctx.shadowColor = '#70c5e5';
+        ctx.shadowBlur = 100;
+        ctx.clearRect(0, 0, width, height);
+        ctx.save()
+        ctx.beginPath();
+        ctx.moveTo(0, this.calcY(data[0]));
+        for (var i = 1; i < data.length; i++) {
+            ctx.lineTo(i * step, this.calcY(data[i]));
+        }
+        ctx.stroke()
     }
 }
 
