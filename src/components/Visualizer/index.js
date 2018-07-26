@@ -19,7 +19,6 @@ class Visualizer extends React.Component {
             this.animations = [
                 new Frequency({ canvas: this.canvas })
             ]
-            // this.resizeCanvas();
         };
         this.state = {
             visual: 0,
@@ -41,7 +40,6 @@ class Visualizer extends React.Component {
     startDrawing() {
         requestAnimationFrame(() => this.startDrawing())
         this.props.isPlaying && this.visual.draw(this.analyzer.getFrequencies())
-        // setInterval(() => this.props.isPlaying && console.log(this.analyzer.getFrequencies()), 200)
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.resizeCanvas.bind(this));
