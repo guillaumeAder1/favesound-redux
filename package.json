@@ -7,7 +7,8 @@
         "build": "NODE_ENV=production webpack -p --progress --colors --config ./webpack.prod.config.js",
         "start": "webpack-dev-server --progress --colors --config ./webpack.config.js --open",
         "test": "mocha --compilers js:babel-core/register --require ./test/setup.js 'src/**/spec.js'",
-        "test:watch": "npm run test -- --watch"
+        "test:watch": "npm run test -- --watch",
+        "setenv": "SET NODE_ENV=production"
     },
     "keywords": [],
     "author": "",
