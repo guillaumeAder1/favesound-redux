@@ -2,6 +2,7 @@
 class Frequency {
     constructor(props) {
         this.canvas = props.canvas;
+        this.fft = props.fft
         this.ctx = this.canvas.getContext('2d');
     }
 

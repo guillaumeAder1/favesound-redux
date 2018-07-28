@@ -14,16 +14,17 @@ class Visualizer extends React.Component {
     constructor(props) {
         super(props);
         this.audioElement = props.audio;
-        this.setCanvasRef = element => {
-            this.canvas = element;
-            this.animations = [
-                new Frequency({ canvas: this.canvas })
-            ]
-        };
         this.state = {
             visual: 0,
             fft: 128
         }
+        this.setCanvasRef = element => {
+            this.canvas = element;
+            this.animations = [
+                new Frequency({ canvas: this.canvas, fft: (this.state.fft / 2) - 1 })
+            ]
+        };
+
 
     }
 
