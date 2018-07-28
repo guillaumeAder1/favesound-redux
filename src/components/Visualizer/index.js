@@ -27,6 +27,15 @@ class Visualizer extends React.Component {
 
     }
 
+    changeVisual(bool) {
+        const newval = (bool) ? 1 : -1;
+        this.setState({
+
+        });
+        this.visual.destroy()
+
+    }
+
     componentDidMount() {
         window.addEventListener('resize', debounce(this.resizeCanvas.bind(this), 300));
         this.analyzer = new Analyzer({ audioPlayer: this.audioElement, fft: this.state.fft });
@@ -55,9 +64,20 @@ class Visualizer extends React.Component {
     }
 
     render() {
-        return (
-            <canvas ref={this.setCanvasRef} />
-        )
+        return [
+            // <button key={1} onClick={() => this.changeVisual(true)} class="button-inline" type="button">
+            //     <a data-tip="Previous Visual" data-offset="{ 'right': 7 }" >
+            //         <i class="fa fa-step-backward"></i>
+            //     </a>
+            // </button>,
+            // <button key={0} onClick={() => this.changeVisual(false)} class="button-inline" type="button">
+            //     <a data-tip="Next visual" data-offset="{ 'right': 6 }" >
+            //         <i class="fa fa-step-forward"></i>
+            //     </a>
+            // </button>,
+
+            <canvas key={2} ref={this.setCanvasRef} />
+        ]
     }
 }
 

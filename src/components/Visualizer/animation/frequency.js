@@ -2,11 +2,7 @@
 class Frequency {
     constructor(props) {
         this.canvas = props.canvas;
-<<<<<<< HEAD
-        this.fft = props.fft
-=======
         this.fft = props.fft;
->>>>>>> c217c68dcab6ffc868ebf525544935c8f4f45b3a
         this.ctx = this.canvas.getContext('2d');
         this.max = 255
     }
