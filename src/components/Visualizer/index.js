@@ -21,10 +21,9 @@ class Visualizer extends React.Component {
         this.setCanvasRef = element => {
             this.canvas = element;
             this.animations = [
-                new Frequency({ canvas: this.canvas, fft: (this.state.fft / 2) - 1 })
+                new Frequency({ canvas: this.canvas, fft: this.state.fft / 2 })
             ]
         };
-
 
     }
 
