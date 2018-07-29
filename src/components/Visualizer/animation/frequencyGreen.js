@@ -1,26 +1,23 @@
 
-class Frequency {
+class FrequencyGreen {
     constructor(props) {
         this.canvas = props.canvas;
         this.fft = props.fft;
         this.ctx = this.canvas.getContext('2d');
         this.max = 255
-        this.name = "blue"
-
+        this.name = "greeen"
     }
 
     setCanvasSize(canvas) {
         this.width = canvas.width;
         this.height = canvas.height;
-
     }
     calcY(val) {
         const perc = val / this.max;
         return this.height - (this.height * perc);
     }
     draw(data) {
-        console.log('blue ')
-
+        console.log('green ')
         const { ctx, width, height } = this
         const step = width / data.length;
         // clear before redraw
@@ -30,8 +27,8 @@ class Frequency {
         ctx.fillRect(0, 0, width, height);
         //
         ctx.lineWidth = 2
-        ctx.strokeStyle = '#00a0dd'
-        ctx.shadowColor = '#70c5e5';
+        ctx.strokeStyle = '#248303'
+        ctx.shadowColor = '#4bc720';
         ctx.shadowBlur = 100;
         // ctx.save()
         ctx.beginPath();
@@ -47,4 +44,4 @@ class Frequency {
     }
 }
 
-export default Frequency;
+export default FrequencyGreen;

@@ -5,6 +5,7 @@ import Analyzer from './analyzer'
 import { connect } from 'react-redux';
 // load animations
 import Frequency from './animation/frequency';
+import FrequencyGreen from './animation/frequencyGreen';
 
 
 
@@ -21,29 +22,41 @@ class Visualizer extends React.Component {
         this.setCanvasRef = element => {
             this.canvas = element;
             this.animations = [
-                new Frequency({ canvas: this.canvas, fft: this.state.fft / 2 })
+                new Frequency({ canvas: this.canvas, fft: this.state.fft / 2 }),
+                new FrequencyGreen({ canvas: this.canvas, fft: this.state.fft / 2 })
             ]
         };
+        // binding
+        this.changeVisual = this.changeVisual.bind(this)
 
     }
 
     changeVisual(bool) {
         const newval = (bool) ? 1 : -1;
-        this.setState({
+        this.setState((prevState, props) => {
+            this.setAnimation(this.state.visual + newval, false)
 
+            return { visual: prevState.visual + newval }
         });
-        this.visual.destroy()
+        console.log(this.state)
+
+        // this.visual.destroy()
 
     }
 
     componentDidMount() {
         window.addEventListener('resize', debounce(this.resizeCanvas.bind(this), 300));
         this.analyzer = new Analyzer({ audioPlayer: this.audioElement, fft: this.state.fft });
-        this.visual = this.animations[this.state.visual];
+        this.setAnimation(this.state.visual, true)
+
+    }
+
+    setAnimation(index, init) {
+        this.visual = this.animations[index];
         setTimeout(() => {
             this.resizeCanvas()
-            this.startDrawing();
-        }, 500);
+            init && this.startDrawing();
+        }, 100);
     }
 
     startDrawing() {
@@ -65,16 +78,16 @@ class Visualizer extends React.Component {
 
     render() {
         return [
-            // <button key={1} onClick={() => this.changeVisual(true)} class="button-inline" type="button">
-            //     <a data-tip="Previous Visual" data-offset="{ 'right': 7 }" >
-            //         <i class="fa fa-step-backward"></i>
-            //     </a>
-            // </button>,
-            // <button key={0} onClick={() => this.changeVisual(false)} class="button-inline" type="button">
-            //     <a data-tip="Next visual" data-offset="{ 'right': 6 }" >
-            //         <i class="fa fa-step-forward"></i>
-            //     </a>
-            // </button>,
+            <button key={1} onClick={() => this.changeVisual(false)} className="button-inline" type="button">
+                <a data-tip="Previous Visual"  >
+                    <i className="fa fa-step-backward"></i>
+                </a>
+            </button>,
+            <button key={0} onClick={() => this.changeVisual(true)} className="button-inline" type="button">
+                <a data-tip="Next visual" >
+                    <i className="fa fa-step-forward"></i>
+                </a>
+            </button>,
 
             <canvas key={2} ref={this.setCanvasRef} />
         ]
