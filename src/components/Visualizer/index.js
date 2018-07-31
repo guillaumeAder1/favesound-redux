@@ -22,10 +22,10 @@ class Visualizer extends React.Component {
         this.setCanvasRef = element => {
             this.canvas = element;
             this.animations = [
+                new FrequencyBar({ canvas: this.canvas, fft: this.state.fft / 2 }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, name: 'blue', filled: true }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'red', filled: true, name: 'red - filled' }),
-                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' }),
-                new FrequencyBar({ canvas: this.canvas, fft: this.state.fft / 2 })
+                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' })
             ]
         };
         // binding
