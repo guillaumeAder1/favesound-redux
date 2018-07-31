@@ -3,9 +3,9 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import Analyzer from './analyzer'
 import { connect } from 'react-redux';
-// load animations
-import FrequencyLine from './animation/frequency';
-import FrequencyBar from './animation/frequencyGreen';
+// animations
+import FrequencyLine from './animation/frequencyLine';
+import FrequencyBar from './animation/frequencyBar';
 
 
 

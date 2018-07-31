@@ -5,7 +5,9 @@ class FrequencyBar {
         this.fft = props.fft;
         this.ctx = this.canvas.getContext('2d');
         this.max = 255
-        this.name = "greeen"
+        this.color = props.color || '#00a0dd';
+        this.filledStyle = props.filled;
+        this.name = props.name || '..Bar..'
     }
 
     setCanvasSize(canvas) {
@@ -17,7 +19,7 @@ class FrequencyBar {
         return this.height - (this.height * perc);
     }
     draw(data) {
-        console.log('green ')
+        console.log(this.name)
         const { ctx, width, height } = this
         const step = width / data.length;
         // clear before redraw
@@ -25,12 +27,11 @@ class FrequencyBar {
         // draw bg color
         ctx.fillStyle = '#141414';
         ctx.fillRect(0, 0, width, height);
-        //
+        // start drawing bars
         ctx.lineWidth = 2
-        ctx.strokeStyle = '#248303'
-        ctx.shadowColor = '#4bc720';
-        ctx.shadowBlur = 100;
-        // ctx.save()
+        ctx.strokeStyle = this.color;
+        // ctx.shadowColor = '#4bc720';
+        // ctx.shadowBlur = 100;
         ctx.beginPath();
         ctx.moveTo(0, this.calcY(data[0]));
         for (var i = 1; i < data.length; i++) {
