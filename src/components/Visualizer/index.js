@@ -16,7 +16,7 @@ class Visualizer extends React.Component {
         super(props);
         this.audioElement = props.audio;
         this.state = {
-            visual: 0,
+            visualIndex: 0,
             fft: 128
         }
         this.setCanvasRef = element => {
@@ -33,10 +33,10 @@ class Visualizer extends React.Component {
 
     changeVisual(bool) {
         const newval = (bool) ? 1 : -1;
+        const calcnewval = this.updateVisualIndex(newval)
         this.setState((prevState, props) => {
-            this.setAnimation(this.state.visual + newval, false)
-
-            return { visual: prevState.visual + newval }
+            this.setAnimation(calcnewval, false);
+            return { visualIndex: calcnewval }
         });
         console.log(this.state)
 
@@ -44,10 +44,21 @@ class Visualizer extends React.Component {
 
     }
 
+    updateVisualIndex(newval) {
+        const val = this.state.visualIndex + newval
+        if (val >= this.animations.length) {
+            return 0;
+        } else if (val < 0) {
+            return this.animations.length - 1;
+        } else {
+            return val;
+        }
+    }
+
     componentDidMount() {
         window.addEventListener('resize', debounce(this.resizeCanvas.bind(this), 300));
         this.analyzer = new Analyzer({ audioPlayer: this.audioElement, fft: this.state.fft });
-        this.setAnimation(this.state.visual, true)
+        this.setAnimation(this.state.visualIndex, true)
 
     }
 
