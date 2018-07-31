@@ -1,11 +1,13 @@
 
-class Frequency {
+class FrequencyLine {
     constructor(props) {
         this.canvas = props.canvas;
         this.fft = props.fft;
         this.ctx = this.canvas.getContext('2d');
         this.max = 255
-        this.name = "blue"
+        this.color = props.color || '#00a0dd';
+        this.filledStyle = props.filled;
+        this.name = props.name || 'no name...'
 
     }
 
@@ -14,12 +16,15 @@ class Frequency {
         this.height = canvas.height;
 
     }
+    /**
+     * @param {Number} val - frequency value (from 0 yo 255) and need to be the Y position on the canvas  
+     */
     calcY(val) {
-        const perc = val / this.max;
-        return this.height - (this.height * perc);
+        return this.height - (this.height * (val / this.max));
     }
+
     draw(data) {
-        console.log('blue ')
+        console.log(this.name)
 
         const { ctx, width, height } = this
         const step = width / data.length;
@@ -30,16 +35,24 @@ class Frequency {
         ctx.fillRect(0, 0, width, height);
         //
         ctx.lineWidth = 2
-        ctx.strokeStyle = '#00a0dd'
-        ctx.shadowColor = '#70c5e5';
-        ctx.shadowBlur = 100;
-        // ctx.save()
+        ctx.strokeStyle = this.color;
         ctx.beginPath();
         ctx.moveTo(0, this.calcY(data[0]));
         for (var i = 1; i < data.length; i++) {
             ctx.lineTo(i * step, this.calcY(data[i]));
         }
-        ctx.stroke()
+
+        if (this.filledStyle) {
+            ctx.lineTo(width, height)
+            ctx.lineTo(0, height)
+            ctx.closePath();
+            ctx.stroke()
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        } else {
+            ctx.stroke()
+        }
+
     }
 
     destroy() {
@@ -47,4 +60,4 @@ class Frequency {
     }
 }
 
-export default Frequency;
+export default FrequencyLine;

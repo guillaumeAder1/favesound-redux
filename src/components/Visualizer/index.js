@@ -4,8 +4,8 @@ import debounce from 'lodash/debounce';
 import Analyzer from './analyzer'
 import { connect } from 'react-redux';
 // load animations
-import Frequency from './animation/frequency';
-import FrequencyGreen from './animation/frequencyGreen';
+import FrequencyLine from './animation/frequency';
+import FrequencyBar from './animation/frequencyGreen';
 
 
 
@@ -22,8 +22,10 @@ class Visualizer extends React.Component {
         this.setCanvasRef = element => {
             this.canvas = element;
             this.animations = [
-                new Frequency({ canvas: this.canvas, fft: this.state.fft / 2 }),
-                new FrequencyGreen({ canvas: this.canvas, fft: this.state.fft / 2 })
+                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, name: 'blue', filled: true }),
+                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'red', filled: true, name: 'red - filled' }),
+                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' }),
+                new FrequencyBar({ canvas: this.canvas, fft: this.state.fft / 2 })
             ]
         };
         // binding

@@ -1,5 +1,5 @@
 
-class FrequencyGreen {
+class FrequencyBar {
     constructor(props) {
         this.canvas = props.canvas;
         this.fft = props.fft;
@@ -44,4 +44,4 @@ class FrequencyGreen {
     }
 }
 
-export default FrequencyGreen;
+export default FrequencyBar;
