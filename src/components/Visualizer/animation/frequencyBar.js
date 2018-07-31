@@ -33,7 +33,8 @@ class FrequencyBar {
             ctx.lineWidth = "2";
             ctx.strokeStyle = "red";
             //const x0
-            ctx.rect(i * step, 0, step, this.calcY(data[i]));
+            ctx.rect(i * step, this.calcY(data[i]), step, height);
+            // ctx.rect(i * step, height, step, this.calcY(data[i]));
             ctx.stroke();
         }
         // ctx.beginPath();
