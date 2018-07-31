@@ -28,16 +28,20 @@ class FrequencyBar {
         ctx.fillStyle = '#141414';
         ctx.fillRect(0, 0, width, height);
         // start drawing bars
-        // ctx.lineWidth = 2
-        // ctx.strokeStyle = this.color;       
+        for (var i = 0; i < data.length; i++) {
+            ctx.beginPath();
+            ctx.lineWidth = "2";
+            ctx.strokeStyle = "red";
+            //const x0
+            ctx.rect(i * step, 0, step, this.calcY(data[i]));
+            ctx.stroke();
+        }
         // ctx.beginPath();
-        // ctx.moveTo(0, this.calcY(data[0]));
-        // for (var i = 1; i < data.length; i++) {
-        //     ctx.lineTo(i * step, this.calcY(data[i]));
-        // }
-        // ctx.stroke()
+        // ctx.lineWidth = "2";
+        // ctx.strokeStyle = "#141414";
+        // ctx.rect(10, 20, 30, 50);
+        // ctx.stroke();
     }
-
     destroy() {
 
     }
