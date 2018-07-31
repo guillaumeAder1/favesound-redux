@@ -11,7 +11,7 @@
         "test:watch": "npm run test -- --watch",
         "setenv": "SET NODE_ENV=production",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "deploy": "gh-pages -d dist"
     },
     "keywords": [],
     "author": "",
