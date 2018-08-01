@@ -18,7 +18,7 @@ class Visualizer extends React.Component {
         this.audioElement = props.audio;
         this.state = {
             visualIndex: 0,
-            fft: 128
+            fft: 64
         }
         this.setCanvasRef = element => {
             this.canvas = element;

@@ -16,11 +16,11 @@ class FrequencyCircle {
     }
     calcY(val) {
         const percent = val / this.max;
-        return this.height - (this.height * percent);
+        return ((this.height) * percent);
     }
     calcX(val) {
         const percent = val / this.max;
-        return this.width - (this.width * percent);
+        return ((this.width) / 2 * percent);
     }
     draw(data) {
         console.log(this.name)
@@ -40,12 +40,14 @@ class FrequencyCircle {
 
         for (var i = 0; i < data.length; i++) {
             const angle = (i / (numNode / 2)) * Math.PI;
-            const dx = orgX + ((radius + data[i] / reducer) * Math.cos(angle))
-            const dy = orgY + ((radius + data[i] / reducer) * Math.sin(angle))
+            const dx = orgX + ((radius + data[i]) * Math.cos(angle))
+            const dy = orgY + ((radius + data[i]) * Math.sin(angle))
+
+            // console.log(data[i], ' - ', dx, ' / ', dy)
             // const dx = orgX + ((radius) * Math.cos(angle))
             // const dy = orgY + ((radius) * Math.sin(angle))
             ctx.beginPath();
-            ctx.arc(dx, dy, 5, 0, Math.PI * 2)
+            ctx.arc(this.calcX(dx), this.calcY(dy), 5, 0, Math.PI * 2)
             ctx.fillStyle = 'green';
             ctx.fill();
             ctx.stroke();
