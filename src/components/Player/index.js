@@ -160,9 +160,9 @@ class Player extends React.Component {
           </div>
         </div>
         <div className="player-content">
-          <div className="visualizer-container">
-            {this.audioElement && <Visualizer audio={this.audioElement} />}
-          </div>
+          {/* <div className="visualizer-container"> */}
+          {this.audioElement && <Visualizer audio={this.audioElement} />}
+          {/* </div> */}
           <div className="player-content-action">
             <ButtonInline onClick={() => this.handleIteratedTrack(-1)}>
               <a data-tip="Previous song" data-offset="{ 'right': 7 }" data-for="global">

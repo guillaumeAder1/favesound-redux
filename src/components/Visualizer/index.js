@@ -91,18 +91,21 @@ class Visualizer extends React.Component {
 
     render() {
         return [
-            <button key={1} onClick={() => this.changeVisual(false)} className="button-inline" type="button">
-                <a data-tip="Previous Visual"  >
-                    <i className="fa fa-step-backward"></i>
-                </a>
-            </button>,
-            <button key={0} onClick={() => this.changeVisual(true)} className="button-inline" type="button">
-                <a data-tip="Next visual" >
-                    <i className="fa fa-step-forward"></i>
-                </a>
-            </button>,
-
-            <canvas key={2} ref={this.setCanvasRef} />
+            <div key={1} className='player-content-action-visual'>
+                <button onClick={() => this.changeVisual(false)} className="button-inline" type="button">
+                    <a data-tip="Previous Visual"  >
+                        <i className="fa fa-step-backward"></i>
+                    </a>
+                </button>
+            </div>,
+            <canvas key={2} ref={this.setCanvasRef} />,
+            <div key={0} className='player-content-action-visual'>
+                <button onClick={() => this.changeVisual(true)} className="button-inline" type="button">
+                    <a data-tip="Next visual" >
+                        <i className="fa fa-step-forward"></i>
+                    </a>
+                </button>
+            </div>
         ]
     }
 }

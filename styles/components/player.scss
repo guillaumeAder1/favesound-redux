@@ -41,6 +41,11 @@
                     color: $mainColor;
                 }
             }
+            &-visual i.fa {
+                // margin: auto $padding/2;
+                // min-width: 0;
+                color: 'red';
+            }
         }
         div {
             margin: auto $padding;
