@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+// const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -35,10 +35,6 @@ module.exports = {
       compress: {
         warnings: false
       }
-    }),
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "index.html"
     }),
     new webpack.DefinePlugin({
       'process.env': {
