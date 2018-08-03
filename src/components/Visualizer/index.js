@@ -27,7 +27,7 @@ class Visualizer extends React.Component {
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, name: 'blue', filled: true }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'red', filled: true, name: 'red - filled' }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' }),
-                new FrequencyCircle({ canvas: this.canvas, fft: this.state.fft / 2 }),
+                new FrequencyCircle({ canvas: this.canvas, fft: this.state.fft / 2, color: 'red' }),
             ]
         };
         // binding

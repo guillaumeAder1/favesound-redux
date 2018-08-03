@@ -70,7 +70,7 @@ class FrequencyCircle {
             ctx.beginPath();
             //ctx.arc(X, Y, 5, 0, Math.PI * 2)
             ctx.arc(dx, dy, 5, 0, Math.PI * 2)
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = this.color;
             ctx.fill();
         }
 
