@@ -23,11 +23,11 @@ class Visualizer extends React.Component {
         this.setCanvasRef = element => {
             this.canvas = element;
             this.animations = [
-                new FrequencyCircle({ canvas: this.canvas, fft: this.state.fft / 2 }),
                 new FrequencyBar({ canvas: this.canvas, fft: this.state.fft / 2 }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, name: 'blue', filled: true }),
                 new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'red', filled: true, name: 'red - filled' }),
-                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' })
+                new FrequencyLine({ canvas: this.canvas, fft: this.state.fft / 2, color: 'lime', filled: false, name: 'lime - not filled' }),
+                new FrequencyCircle({ canvas: this.canvas, fft: this.state.fft / 2 }),
             ]
         };
         // binding
@@ -42,10 +42,7 @@ class Visualizer extends React.Component {
             this.setAnimation(calcnewval, false);
             return { visualIndex: calcnewval }
         });
-        console.log(this.state)
-
-        // this.visual.destroy()
-
+        console.log(this.state);
     }
 
     updateVisualIndex(newval) {

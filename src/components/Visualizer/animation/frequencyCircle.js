@@ -16,11 +16,13 @@ class FrequencyCircle {
     }
     calcY(val) {
         const percent = val / this.max;
-        return ((this.height) * percent);
+        const res = ((this.height - 10) * percent);
+        return res
     }
     calcX(val) {
         const percent = val / this.max;
-        return ((this.width) / 2 * percent);
+        const res = ((this.width - 10) / 2 * percent);
+        return res
     }
     draw(data) {
         console.log(this.name)
@@ -37,20 +39,39 @@ class FrequencyCircle {
         const numNode = data.length;
         const radius = 15;
         const reducer = 8
+        //console.log("origin", orgX, orgY, "size", width, height)
+        const t = true
+
+        // center circle
+        // ctx.beginPath();
+        // ctx.arc(width / 2, height / 2, 5, 0, Math.PI * 2)
+        // ctx.fillStyle = 'red';
+        // ctx.fill();
 
         for (var i = 0; i < data.length; i++) {
             const angle = (i / (numNode / 2)) * Math.PI;
-            const dx = orgX + ((radius + data[i]) * Math.cos(angle))
-            const dy = orgY + ((radius + data[i]) * Math.sin(angle))
+            // const dx = orgX + ((radius + data[i]) * Math.cos(angle))
+            // const dy = orgY + ((radius + data[i]) * Math.sin(angle))
 
-            // console.log(data[i], ' - ', dx, ' / ', dy)
-            // const dx = orgX + ((radius) * Math.cos(angle))
-            // const dy = orgY + ((radius) * Math.sin(angle))
+
+            const dx = orgX + ((this.calcX(radius + data[i])) * Math.cos(angle))
+            const dy = orgY + ((this.calcY(radius + data[i])) * Math.sin(angle))
+
+            // const X = this.calcX(dx)
+            // const Y = this.calcY(dy)
+
+            // //console.log("value", data[i], "destx", dx, "desty", dy)
+            // console.log("this.calcX", X)
+            // console.log("this.calcY", Y)
+
+            //ctx.clearRect(0, 0, width, height);
+
+
             ctx.beginPath();
-            ctx.arc(this.calcX(dx), this.calcY(dy), 5, 0, Math.PI * 2)
+            //ctx.arc(X, Y, 5, 0, Math.PI * 2)
+            ctx.arc(dx, dy, 5, 0, Math.PI * 2)
             ctx.fillStyle = 'green';
             ctx.fill();
-            ctx.stroke();
         }
 
     }
